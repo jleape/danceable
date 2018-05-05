@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/jonathanleape/Documents/1.001/Project/Existing Projects/DACwPipeline/DeepAudioClassification/musicDNN.tflearn"
+all_model_checkpoint_paths: "/Users/jonathanleape/Documents/1.001/Project/Existing Projects/DACwPipeline/DeepAudioClassification/musicDNN.tflearn"

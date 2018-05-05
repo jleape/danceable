@@ -1,0 +1,50 @@
+{
+  "name": "danceable",
+  "version": "1.0.0",
+  "description": "An app to discover music that you can dance to.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node server.js",
+    "bundle": "browserify -d public/js/index.js > public/js/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jleapeMIT/danceable.git"
+  },
+  "keywords": [
+    "dance",
+    "convolutional",
+    "neural",
+    "networks",
+    "machine",
+    "learning",
+    "spectrogram",
+    "music",
+    "genre",
+    "bpm",
+    "mp3"
+  ],
+  "author": "Jonathan Hoagland Leape",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jleapeMIT/danceable/issues"
+  },
+  "homepage": "https://github.com/jleapeMIT/danceable#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "bpm": "0.0.2",
+    "bpm.js": "^2.0.0",
+    "browser-id3-writer": "^4.0.0",
+    "chart.js": "^2.7.2",
+    "child_process": "^1.0.2",
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "express-fileupload": "^0.4.0",
+    "fs-extra": "^6.0.0",
+    "music-metadata": "^0.11.3",
+    "mz": "^2.7.0",
+    "util": "^0.10.3",
+    "youtube-mp3": "^0.1.2"
+  }
+}
