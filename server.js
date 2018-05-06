@@ -81,7 +81,8 @@ app.post('/input', async function(req, res) {
     console.log('artist: ' + metadata.common.artist);
     console.log('album: ' + metadata.common.album);
     console.log('year: ' + metadata.common.year);
-    let machineBPM = await getBPM(mp3path);
+    let machineBPM = 0;
+    await getBPM(mp3path);
     let prediction = await callCNN();
     let predictionArray = [prediction.Afrobeat, prediction['Brazilian Zouk'], prediction.Bachata, prediction.Kizomba];
     let predictionStr = 'let cnnArray = [' + predictionArray + '];';
@@ -118,6 +119,8 @@ const getBPM = function(mp3){
     .pipe(bpmSink())
     .on("bpm", function(bpm){
       console.log("bpm is %d", bpm)
+      console.log(typeof bpm)
+      machineBPM = bpm;
     });
 };
 
@@ -139,7 +142,3 @@ const parseMP3File = async function(path) {
         });                 
     });
 }
-
-// chart updates!
-// Ask about managing post and get from different input sources. And how to avoid redirecting to a new URL
-// async await, .then or what to manage app.post processes.

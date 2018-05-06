@@ -1,6 +1,8 @@
 const BPM = require('bpm')
 
 // Circular BPM gauge
+
+// machine BPM
 $("#circularGaugeContainer").dxCircularGauge({
     rangeContainer: { 
       offset: 10,
@@ -22,20 +24,82 @@ $("#circularGaugeContainer").dxCircularGauge({
       enabled: true,
       format: 'number',
           customizeText: function (arg) {
-              return 'Current ' + arg.valueText;
+              return arg.valueText + ' BPM';
           }
       },
-    value: machineBPM
+    value: machineBPM,
+    animation: false
 });
 
-const bpmButton = document.getElementById('bpmButton');
-//const display = document.getElementById('display');
+// Initial user BPM
+$("#circularGaugeContainer_user").dxCircularGauge({
+    rangeContainer: { 
+      offset: 10,
+      ranges: [
+        {startValue: 0, endValue: 60, color: 'grey'},
+        {startValue: 60, endValue: 140, color: 'white'},
+        {startValue: 140, endValue: 200, color: 'grey'}
+      ]
+    },
+    scale: {
+      startValue: 0,  endValue: 200,
+      majorTick: { tickInterval: 20 },
+      label: {
+        format: 'number',
+        fontColor: 'white'
+      }
+    },
+    tooltip: {
+      enabled: true,
+      format: 'number',
+          customizeText: function (arg) {
+              return arg.valueText + ' BPM';
+          }
+      },
+    value: 0,
+    animation: false
+});
 
+// reset BPM tap button
+const bpmResetButton = document.getElementById('bpmResetButton');
+$("#bpmResetButton").click(() => {
+    b.reset();
+
+    $("#circularGaugeContainer_user").dxCircularGauge({
+        rangeContainer: { 
+          offset: 10,
+          ranges: [
+            {startValue: 0, endValue: 60, color: 'grey'},
+            {startValue: 60, endValue: 140, color: 'white'},
+            {startValue: 140, endValue: 200, color: 'grey'}
+          ]
+        },
+        scale: {
+          startValue: 0,  endValue: 200,
+          majorTick: { tickInterval: 20 },
+          label: {
+            format: 'number',
+            fontColor: 'white'
+          }
+        },
+        tooltip: {
+          enabled: true,
+          format: 'number',
+              customizeText: function (arg) {
+                  return arg.valueText + ' BPM';
+              }
+          },
+        value: 0,
+        animation: false
+    });
+});
+
+// Set gauge to tap
+const bpmButton = document.getElementById('bpmButton');
 const b = new BPM();
 $("#bpmButton").click(() => {
   b.tap();
-  //console.log(b.tap().avg);
-
+  
   $("#circularGaugeContainer_user").dxCircularGauge({
     rangeContainer: { 
       offset: 10,
@@ -57,10 +121,11 @@ $("#bpmButton").click(() => {
       enabled: true,
       format: 'number',
           customizeText: function (arg) {
-              return 'Current ' + arg.valueText;
+              return arg.valueText + ' BPM';
           }
       },
-    value: b.tap().avg
+    value: b.tap().avg / 2,
+    animation: false
 });
 });
 

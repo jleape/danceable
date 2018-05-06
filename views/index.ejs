@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="css/custom.css" />
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Fascinate|Montserrat:100" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Monofett|Montserrat:100" rel="stylesheet">
 
     <!-- Chart.js CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -32,37 +32,37 @@
     
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-          <h1 style="font-family: 'Fascinate', cursive; font-size: 4em; color: white">DANCEABLE</h1>
+
+        <!-- Side Panel -->
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <h1 style="">DANCEABLE</h1>
 
           <!-- Select Dance Style -->
-          <div class="form-group">
-              <select class="form-control" id="selectStyle">
+          <!-- <div class="form-group"> -->
+              <select id="selectStyle">
                 <option>AFROBEAT</option>
                 <option>BACHATA</option>
                 <option>BRAZILIAN ZOUK</option>
                 <option>KIZOMBA</option>
               </select>
-            </div>
+            <!-- </div> -->
+
           <!-- Spotify -->
-          <!-- <div>
-              <label style="font-family: 'Montserrat', sans-serif; color: white;" for="spotifyURL">Spotify Link: </label>
-              <input type="text" name="spotifyURL" />
-            </div>
-          <iframe width="100%" height="300" scrolling="no" frameborder="no" allowtransparency="true" allow="encrypted-media" src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:37i9dQZF1DWT34oeYRnJ0R&theme=white"></iframe> -->
+          <label class="container3">SPOTIFY
+              <input type="text" name="spotifyURL">
+          </label>
+          <iframe width="100%" height="300" scrolling="no" frameborder="no" allowtransparency="true" allow="encrypted-media" src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:37i9dQZF1DWT34oeYRnJ0R&theme=white"></iframe>
 
           <!-- SoundCloud -->
-          <div>
-            <label style="font-family: 'Montserrat', sans-serif; color: white;" for="soundCloudURL">SoundCloud Link: </label>
-            <input type="text" name="soundCloudURL" />
-          </div>
+          <label class="container3">SOUNDCLOUD
+              <input type="text" name="soundCloudURL">
+          </label>
           <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/44552279&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
           
           <!-- YouTube -->
-          <div>
-            <label style="font-family: 'Montserrat', sans-serif; color: white;" for="youTubeURL">YouTube Link: </label>
-            <input type="text" name="youTubeURL" />
-          </div>
+          <label class="container3">YOUTUBE
+              <input type="text" name="youTubeURL">
+          </label>
           <iframe width="100%" height="300" frameborder="no" allowfullscreen src="https://www.youtube.com/embed/?listType=playlist&list=PL9ygjDWkICkQ82oFv1Iv238w2Y3CCu-l6"></iframe>
 
           <!-- MP3 -->
@@ -80,39 +80,55 @@
             <label style="font-family: 'Montserrat', sans-serif; color: white;" for="youTubeURL">YouTube Link: </label>
             <input type="text" name="youTubeURL" /> -->
             <div>
-                <button>Submit</button>
+                <button id="mp3submit">SUBMIT</button>
               </div>
           </form>
-
         </div>
 
+        <!-- Main Panel -->
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+
           <!-- Spectrogram -->
           <div class="slidingSpectro">
             <img src="./CNN/Input/InputSpectrograms/inputSpectro.png" class="spectro" alt="Responsive Image">
           </div>
+
           <!-- Audio Play Button -->
           <div class="audioplay-object">
             <div class="audioplay-button"></div>
             <audio class="audioplay-player" data-apskin="classic">
-              <!-- AudioPlay2 player. Visit https://strangecube.com/audioplay2/ -->
-              <!-- <source src="https://strangecube.com/audioplay2/player/music/music.ogg" /> -->
-	            <!-- <source src="https://strangecube.com/audioplay2/player/music/music.mp3" /> -->
               <source src="./CNN/Input/Raw/new.mp3" />
               Your browser doesn't support &lt;audio&gt; element.
             </audio>
           </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2 style="text-align: left">MACHINE</h2>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+              <h2 style="text-align: right">FEEDBACK</h2>
+            </div>
+          </div>
+
           <!-- BPM Gauges-->
           <div class="row">
-            <script><%= machineBPM %></script>
-            <div id="circularGaugeContainer" style="height:400px;margin:0 auto"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <script><%= machineBPM %></script>
+                <div id="circularGaugeContainer" style="height:400px;margin:0 auto"></div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <!-- Linear Gauge -->
               <!-- <div style="width: 100%; float: left; padding: 20px;">
                   <div style="float: left; padding: 0px;">
                       <canvas id="canvas10" height="408" width="981" style="width: 981px; height: 408px;"></canvas>
                   </div>
               </div> -->
-            <button type="button" id="bpmButton" class="btn btn-default btn-circle btn-xl"><i>TAP</i></button>
-            <div id="circularGaugeContainer_user" style="height:400px;margin:0 auto"></div>
+              <button type="button" id="bpmButton" class="btn btn-default btn-circle btn-xl"><i>TAP</i></button>
+              <button type="button" id="bpmResetButton" class="btn btn-default"><i>RESET</i></button>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div id="circularGaugeContainer_user" style="height:400px;margin:0 auto"></div>
+            </div>
           </div>
           <!-- Server Results -->
           <div class="row">
@@ -120,13 +136,13 @@
                 <script><%= predictionArray %></script>
                 <canvas id="myChart" width="400" height="400"></canvas>
                 <br>
-                <h2><%= title %></h2>
+                <h3><%= title %></h3>
                 <br>
-                <h2><%= artist %></h2>
+                <h3><%= artist %></h3>
                 <br>
-                <h2><%= album %></h2>
+                <h3><%= album %></h3>
                 <br>
-                <h2><%= year %></h2>
+                <h3><%= year %></h3>
                 <br>
             </div>
             <!-- Feedback Form -->
@@ -184,10 +200,6 @@
     </div>
     
     <!-- Charts -->
-    <!-- <script src="js/barChart.js"></script> -->
-    <!-- <script src="js/bpmGauge_linear.js"></script> -->
-    <!-- <script src="js/bpmGauge_circular.js"></script> -->
-    <!-- <script src="js/main.js"></script> -->
     <script src="js/bundle.js"></script>
 
     <!-- Audio Play Button -->
