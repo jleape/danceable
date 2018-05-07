@@ -35,36 +35,41 @@
 
         <!-- Side Panel -->
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-          <h1 style="">DANCEABLE</h1>
-
+          <h1>DANCEABLE</h1>
+          <br>
           <!-- Select Dance Style -->
-          <!-- <div class="form-group"> -->
-              <select id="selectStyle">
-                <option>AFROBEAT</option>
-                <option>BACHATA</option>
-                <option>BRAZILIAN ZOUK</option>
-                <option>KIZOMBA</option>
-              </select>
-            <!-- </div> -->
-
+          <select id="selectStyle" onChange="updatePlaylists()">
+            <option value="afrobeat">AFROBEAT</option>
+            <option value="bachata">BACHATA</option>
+            <option value="brazilianZouk">BRAZILIAN ZOUK</option>
+            <option value="kizomba">KIZOMBA</option>
+          </select>
+          <br>
+          <br>
           <!-- Spotify -->
           <label class="container3">SPOTIFY
               <input type="text" name="spotifyURL">
           </label>
-          <iframe width="100%" height="300" scrolling="no" frameborder="no" allowtransparency="true" allow="encrypted-media" src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:37i9dQZF1DWT34oeYRnJ0R&theme=white"></iframe>
-
+          <iframe id="spotifyList" width="100%" height="300" scrolling="no" frameborder="no" allowtransparency="true" allow="encrypted-media" src="https://open.spotify.com/embed?uri=spotify:user:5yugugze9zb4k58w6jkdipe15:playlist:3ZuOgGVFWmF2aH9pb6to1R&theme=white"></iframe>
+          <br>
+          <br>
+          <br>
           <!-- SoundCloud -->
           <label class="container3">SOUNDCLOUD
               <input type="text" name="soundCloudURL">
           </label>
-          <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/44552279&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
-          
+          <iframe id="soundCloudList" width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/513507393&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+          <br>
+          <br>
+          <br>
           <!-- YouTube -->
           <label class="container3">YOUTUBE
               <input type="text" name="youTubeURL">
           </label>
-          <iframe width="100%" height="300" frameborder="no" allowfullscreen src="https://www.youtube.com/embed/?listType=playlist&list=PL9ygjDWkICkQ82oFv1Iv238w2Y3CCu-l6"></iframe>
-
+          <iframe id="youTubeList" width="100%" height="300" frameborder="no" allowfullscreen src="https://www.youtube.com/embed/?listType=playlist&list=PLU_LO3ct2WS_RNyQ2B9LSo-hSO2qOMRZb"></iframe>
+          <br>
+          <br>
+          <br>          
           <!-- MP3 -->
           <form ref='uploadForm' 
             id='uploadForm' 
@@ -72,31 +77,35 @@
             method='post' 
             encType="multipart/form-data">
             <label class="custom-file-upload">
-                <input type="file" name="mp3File" accept=".mp3"/>
-                UPLOAD MP3
+              <input type="file" name="mp3File" accept=".mp3"/>UPLOAD MP3
             </label>
             <!-- <label style="font-family: 'Montserrat', sans-serif; color: white;" for="soundCloudURL">SoundCloud Link: </label>
             <input type="text" name="soundCloudURL" />
             <label style="font-family: 'Montserrat', sans-serif; color: white;" for="youTubeURL">YouTube Link: </label>
             <input type="text" name="youTubeURL" /> -->
             <div>
-                <button id="mp3submit">SUBMIT</button>
-              </div>
+              <button id="mp3submit">ANALYZE MP3</button>
+            </div>
           </form>
         </div>
 
         <!-- Main Panel -->
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-
+            <form ref='feedbackForm' 
+            id='feedbackForm' 
+            action='./corrected' 
+            method='post' 
+            encType="multipart/form-data">
           <!-- Spectrogram -->
           <div class="slidingSpectro">
-            <img src="./CNN/Input/InputSpectrograms/inputSpectro.png" class="spectro" alt="Responsive Image">
+              <!-- style="<%= duration %> animation-play-state: running" -->
+            <img id="spectro" src="./CNN/Input/InputSpectrograms/inputSpectro.png" class="spectro" alt="Responsive Image">
           </div>
 
           <!-- Audio Play Button -->
           <div class="audioplay-object">
-            <div class="audioplay-button"></div>
-            <audio class="audioplay-player" data-apskin="classic">
+            <div id="playButton" class="audioplay-button"></div>
+            <audio id="player" class="audioplay-player" data-apskin="classic" data-apmode="playpause">
               <source src="./CNN/Input/Raw/new.mp3" />
               Your browser doesn't support &lt;audio&gt; element.
             </audio>
@@ -109,7 +118,7 @@
               <h2 style="text-align: right">FEEDBACK</h2>
             </div>
           </div>
-
+          <br>
           <!-- BPM Gauges-->
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
@@ -123,78 +132,86 @@
                       <canvas id="canvas10" height="408" width="981" style="width: 981px; height: 408px;"></canvas>
                   </div>
               </div> -->
-              <button type="button" id="bpmButton" class="btn btn-default btn-circle btn-xl"><i>TAP</i></button>
+              <button type="button" id="bpmButton" name="bpmButton" class="btn btn-default btn-circle btn-xl"><i>TAP</i></button>
+              <input type="hidden" id="bpmInput" name="bpmInput" value="0">
               <button type="button" id="bpmResetButton" class="btn btn-default"><i>RESET</i></button>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <div id="circularGaugeContainer_user" style="height:400px;margin:0 auto"></div>
             </div>
           </div>
-          <!-- Server Results -->
+          <br>
+          <br>
+          <br>
+          <!-- Dance Style Suitability -->
+          <div class="row">
+            <!-- Machine Prediction -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <script><%= predictionArray %></script>
+              <canvas id="myChart" width="400" height="400"></canvas>
+            </div>
+            <!-- Feedback -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <label class="container">AFROBEAT
+                <input type="checkbox" name="afrobeat">
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="container">BACHATA
+                <input type="checkbox" name="bachata">
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="container">BRAZILIAN ZOUK
+                <input type="checkbox" name="brazilianZouk">
+                <span class="checkmark"></span>
+              </label>
+              
+              <label class="container">KIZOMBA
+                <input type="checkbox" name="kizomba">
+                <span class="checkmark"></span>
+              </label>
+            </div>
+            <!-- Submit and Download -->
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+              <button id="submitFeedback">SUBMIT FEEDBACK</button>
+              <a href="<%= mp3downloadHref %>" download id="mp3download"/>DOWNLOAD MP3</a>
+            </div>
+          </div>
+          <br>
+          <br>
+          <br>
           <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <script><%= predictionArray %></script>
-                <canvas id="myChart" width="400" height="400"></canvas>
-                <br>
-                <h3><%= title %></h3>
-                <br>
-                <h3><%= artist %></h3>
-                <br>
-                <h3><%= album %></h3>
-                <br>
-                <h3><%= year %></h3>
-                <br>
+              <!-- Coded Meta Data -->
+              <h3 id="firstMM"><%= title %></h3>
+              <br>
+              <h3><%= artist %></h3>
+              <br>
+              <h3><%= album %></h3>
+              <br>
+              <h3><%= year %></h3>
             </div>
-            <!-- Feedback Form -->
+            <!-- Meta Data Inputs -->
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-              <form action="js/setMetaData.js">
-                <!-- Dance Style Checkboxes -->
-                <label class="container">AFROBEAT
-                    <input type="checkbox" name="afrobeat">
-                    <span class="checkmark"></span>
-                  </label>
-                  
-                  <label class="container">BACHATA
-                    <input type="checkbox" name="bachata">
-                    <span class="checkmark"></span>
-                  </label>
-                  
-                  <label class="container">BRAZILIAN ZOUK
-                    <input type="checkbox" name="brazilianZouk">
-                    <span class="checkmark"></span>
-                  </label>
-                  
-                  <label class="container">KIZOMBA
-                    <input type="checkbox" name="kizomba">
-                    <span class="checkmark"></span>
-                  </label>
-                  <br>
-                  <br>
-
-                  <!-- Meta Data Inputs -->
-                  <label class="container2">TITLE
-                    <input type="text" name="title">
-                  </label>
-                  
-                  <label class="container2">ARTIST
-                    <input type="text" name="artist">
-                  </label>
-                  
-                  <label class="container2">ALBUM
-                    <input type="text" name="album">
-                  </label>
-                  
-                  <label class="container2">YEAR
-                    <input type="text" name="year">
-                  </label>
-
-                  <label class="custom-submit">
-                      <input type="submit" name="Submit" />
-                      SUBMIT FEEDBACK
-                  </label>
-                  <a href="CNN/Input/Raw/new.mp3" download/>DOWNLOAD MP3</a>
-                </form>
+              <label class="container2">TITLE
+                <input type="text" name="title" value="<%= title %>">
+              </label>
+              
+              <label class="container2">ARTIST
+                <input type="text" name="artist" value="<%= artist %>">
+              </label>
+              
+              <label class="container2">ALBUM
+                <input type="text" name="album" value="<%= album %>">
+              </label>
+              
+              <label class="container2">YEAR
+                <input type="text" name="year" value="<%= year %>">
+              </label>
             </div>
+          </div>
+        </form>
         </div>
       </div>
     </div>

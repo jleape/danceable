@@ -1,7 +1,8 @@
 # Deep Audio Classification
-A pipeline to build a dataset from your own music library and use it to fill the missing genres
 
-Read the [article on Medium](https://medium.com/@juliendespois/finding-the-genre-of-a-song-with-deep-learning-da8f59a61194#.yhemoyql0)
+This was modified from nihal223's github repo: https://github.com/nihal223/DeepAudioClassification/blob/master/README.md
+
+which was in turn forked from despoisj's repo. The original methodology is described here: [article on Medium](https://medium.com/@juliendespois/finding-the-genre-of-a-song-with-deep-learning-da8f59a61194#.yhemoyql0)
 
 Required install:
 
@@ -13,7 +14,8 @@ tflearn
 ```
 
 - Create folder Data/Raw/
-- Place your labeled .mp3 files in Data/Raw/
+- Create a subfolder for each dance style you are considering.
+- Place .mp3 files in the folders for the dance styles that suit the song. Some songs should be saved in multiple folders!
 
 To create the song slices (might be long):
 
