@@ -14,7 +14,7 @@ const getYouTube = require('youtube-mp3');
 const BPM = require('bpm');
 const bpmSink = require('bpm.js');
 const mm = require('music-metadata');
-const callCNN = require('./nodeTest/callCNN.js')
+const callCNN = require('./callCNN.js')
 const ID3Writer = require('browser-id3-writer')
 
 const app = express();
