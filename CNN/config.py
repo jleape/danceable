@@ -1,3 +1,4 @@
+#!/usr/bin/python
 #Define paths for files
 homeDir = "./"
 spectrogramsInputPath = homeDir + "Input/InputSpectrograms/"

@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # Import Pillow:
 from PIL import Image
 import os.path
