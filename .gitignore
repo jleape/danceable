@@ -13,9 +13,8 @@ CNN/Data/Slices/Afrobeat/*
 CNN/Data/Slices/Bachata/*
 CNN/Data/Slices/Brazilian Zouk/*
 CNN/Data/Slices/Kizomba/*
-
-CNN/Data/Input/Corrected/*
-CNN/Data/Input/Slices/Test/*
+CNN/Input/Corrected/*
+CNN/Input/Slices/Test/*
 
 CNN/musicDNN.tflearn.data-00000-of-00001
 
