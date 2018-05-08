@@ -20,7 +20,10 @@ https://www.dropbox.com/s/c9g4uv27jzurbxc/musicDNN.tflearn.data-00000-of-00001?d
 
 Install:
 
+If you don't have them, first install the latest versions of NodeJS and Python.
+
 ```
+pip install libmagic eyed3 sox tensorflow tflearn
 npm install
 ```
 
