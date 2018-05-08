@@ -40,7 +40,7 @@ def createSpectrogram(filename,newFilename):
 		print errors
 
 	#Remove tmp mono track
-	os.remove("{}.mp3".format(tmpPath+newFilename))
+	# os.remove("{}.mp3".format(tmpPath+newFilename))
 
 #Creates .png whole spectrograms from mp3 files
 def createSpectrogramsFromAudio():
@@ -99,7 +99,7 @@ def createInputSpectrogram(filename,newFilename):
 		print errors
 
 	#Remove tmp mono track
-	os.remove("{}.mp3".format(tmpPath+newFilename))
+	# os.remove("{}.mp3".format(tmpPath+newFilename))
 
 def createSpectrogramsFromInputAudio():
 	files = os.listdir(inputDataPath)
